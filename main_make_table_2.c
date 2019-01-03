@@ -1,7 +1,7 @@
 #include "Headers.h"
-  // See Bai's papers in 2013 and 2011:
-  // Title : WIND-DRIVEN ACCRETION IN PROTOPLANETARY DISKS. I
+  // See Bai's papers in 2011 and 2013:
   // Title : THE ROLE OF TINY GRAINS ON THE ACCRETION PROCESS IN PROTOPLANETARY DISKS
+  // Title : WIND-DRIVEN ACCRETION IN PROTOPLANETARY DISKS. I
 #define SQR(x) ((x)*(x))
 #define WITH_GRAIN
 //#define DEBUG
