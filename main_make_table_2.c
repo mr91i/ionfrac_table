@@ -9,13 +9,11 @@ int main(int argc, char *argv[]){
   ////////////////////////////////////////////////////
   double zeta      = atof(argv[1]);
   double rho       = atof(argv[2]);
-  double r         = atof(argv[3]) * one_AU; // Now unused value
-  double T         = atof(argv[4]);
-  double f_dg      = atof(argv[5]);
-  double r_d       = atof(argv[6]);
-  double Mass_star = atof(argv[7])*Mass_Sun; // Now unused value
+  double T         = atof(argv[3]);
+  double f_dg      = atof(argv[4]);
+  double r_d       = atof(argv[5]);
   ////////////////////////////////////////////////////
-  double n_n     = rho/m_n ;
+  double n_n       = rho/m_n ;
   double n_e, n_i, S_grain, sig_O, sig_H, sig_P, sig_O__P;
   // Assume small B strength for
   double B = 1e-3 * 1./2.1 * (n_n/1.e15)/MAX(1,sqrt(T/100.0));
@@ -25,17 +23,14 @@ int main(int argc, char *argv[]){
   
 #ifdef WITH_GRAIN
 	calc_sigma_OHP_wgrain_woEH(rho, T, f_dg, r_d, n_e, n_i, B, &sig_O, &sig_H, &sig_P, &sig_O__P);
-#endif
-#ifndef  WITH_GRAIN
+#elif
 	calc_sigma_OHP_wograin_woEH(rho, T, n_e, n_i, B, &sig_O, &sig_H, &sig_P, &sig_O__P);
 #endif
-	
 
   double sig_perp2 = SQR(sig_H) + SQR(sig_P) ;
   double eta_O     = cc_4p / sig_O;
   double eta_H     = cc_4p * sig_H/sig_perp2 ;
   double eta_A     = cc_4p * ( sig_P*sig_O__P - sig_H*sig_H ) /( sig_perp2*sig_O );
-
   double Q_H = eta_H/B   ;
   double Q_A = eta_A/B/B ;
   
@@ -48,4 +43,3 @@ int main(int argc, char *argv[]){
 
   return 1;
 }
-
