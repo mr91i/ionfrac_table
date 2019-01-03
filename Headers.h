@@ -1,0 +1,2 @@
+////  PrefixHeader.pch//  EHzone////  Created by mori shoji on 2014/09/06.//  Copyright (c) 2014年 mori shoji. All rights reserved.//#ifndef EHzone_Headers_pch#define EHzone_Headers_pch
+#define MAX(x,y) ( x > y ? x : y )#include <stdio.h>#include <stdlib.h>#include <math.h>#include <string.h>#include <sys/stat.h>#include "const.h"#include "NLOhm.h"#endif
