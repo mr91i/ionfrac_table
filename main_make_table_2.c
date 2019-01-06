@@ -1,17 +1,40 @@
 #include "Headers.h"
+#include <unistd.h>
   // See Bai's papers in 2011 and 2013:
   // Title : THE ROLE OF TINY GRAINS ON THE ACCRETION PROCESS IN PROTOPLANETARY DISKS
   // Title : WIND-DRIVEN ACCRETION IN PROTOPLANETARY DISKS. I
 #define SQR(x) ((x)*(x))
 #define WITH_GRAIN
 //#define DEBUG
+
+void usage(char *c){
+	fprintf(stderr,"Usage: %s zeta rho T f_dg rd\n",c);
+	exit(1);
+}
+
 int main(int argc, char *argv[]){
+    int opt,optg=0;
+    opterr = 1; 
+
+	if(argc==1){
+		usage(argv[0]);
+	}
+    while ( (opt=getopt(argc, argv, "g")) != -1) {
+        if (opt == 'g') {
+			optg=1;
+        } else {
+			usage(argv[0]);
+        }
+    }
+  if(argc-optind!=5){
+	usage(argv[0]); 
+  }
   ////////////////////////////////////////////////////
-  double zeta      = atof(argv[1]);
-  double rho       = atof(argv[2]);
-  double T         = atof(argv[3]);
-  double f_dg      = atof(argv[4]);
-  double r_d       = atof(argv[5]);
+  double zeta      = atof(argv[0+optind]);
+  double rho       = atof(argv[1+optind]);
+  double T         = atof(argv[2+optind]);
+  double f_dg      = atof(argv[3+optind]);
+  double r_d       = atof(argv[4+optind]);
   ////////////////////////////////////////////////////
   double n_n       = rho/m_n ;
   double n_e, n_i, S_grain, sig_O, sig_H, sig_P, sig_O__P;
@@ -43,3 +66,4 @@ int main(int argc, char *argv[]){
 
   return 1;
 }
+

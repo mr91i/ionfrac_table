@@ -314,7 +314,7 @@ double Z_calc_by_NR_woE(double T_e,double T_i,double n_n,double T_n,double n_d,d
 	// K_rec in Ganguli 1988 is used
   
   double K_de,K_di,K_rec, n_e,n_i, F_0,F_d;
-  double Z = 0.0 , Z_0 = -20.0*(T_n/100.0) , Z_start = Z_0 ;
+  double Z = 0.0 , Z_0 = -0.1 , Z_start = Z_0 ;
   double delta = 1.0e-3*Z_0;
   int i = 0;
   
@@ -343,12 +343,11 @@ double Z_calc_by_NR_woE(double T_e,double T_i,double n_n,double T_n,double n_d,d
 	if(isnan(Z)){printf("Z error in Zcalc 1 \n"); return NAN;}
 	if(fabs(Z-Z_0)<1e-8*fabs(Z_0)){break;}
 	if(fabs(Z-Z_0)>1e20*fabs(Z_0)){printf("???\n");return NAN; exit(1);}
-	  //Z_k=Z_0;
 	Z_0  = Z;
-	printf("%d",i);
+//	printf("%d ",i);
 	if(fabs(Z)<1e-100){Z_start*=1.1; Z=Z_start ; Z_0=Z*0.1;}
   }
-  printf("\n --> %g %g\n",Z_start,Z);
+//  printf("iteration:%d , Z_start to end : %g --> %g\n",i,Z_start,Z);
   return Z;
 }
 
